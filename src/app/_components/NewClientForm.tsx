@@ -117,13 +117,20 @@ const location=[
     },
 
   ]
+  const docTypes= [
+    // {value:"Seleccione"},
+    {value:"Cedula de Ciudadania"},
+    // "Tarjeta de Identidad",
+    {value:"Cedula de Extranjería"},
+    {value:"Pasaporte"},
+  ]
 interface FormField {
   label: string;
   icon?: any
   name: keyof User;
   type: string;
   placeholder: string;
-  validation: {
+  validation?: {
     required: string;
     pattern?: {
       value: string | RegExp;
@@ -134,14 +141,14 @@ interface FormField {
 }
 
 const userTypes =[
-  {value:''},
-  {value:'ASESOR'},
-  {value:'PUBLIC'},
+  // {value:'ADMIN'},
+  // {value:'ASESOR'},
+  // {value:'PUBLIC'},
 
 ]
 const formFields: FormField[] = [
   {
-    label: 'Nombre de la empresa',
+    label: 'Nombres',
     icon: <LocationCityOutlinedIcon/>,
     name: 'company',
     type: 'text',
@@ -151,13 +158,34 @@ const formFields: FormField[] = [
     },
   },
   {
-    label: 'Nit',
+    label: 'Apellidos',
     icon: <FingerprintOutlinedIcon/>,
-    name: 'nit',
+    name: 'lastName',
     type: 'text',
     placeholder: 'Nit',
     validation: {
       required: 'Digite el NIT de la empresa a la que pertenece',
+    },
+  },
+  {
+    label: 'Tipo de Documento',
+    icon: <FingerprintOutlinedIcon/>,
+    name: 'documentType',
+    type: 'select',
+    placeholder: 'Seleccione Documento de identidad',
+    validation: {
+      required: 'Elija el tipo de documento de identificacion',
+    },
+        options: docTypes
+  },
+  {
+    label: 'Numero de Documento',
+    icon: <FingerprintOutlinedIcon/>,
+    name: 'document',
+    type: 'text',
+    placeholder: 'Documento de identidad',
+    validation: {
+      required: 'Digite el su numero de documento',
     },
   },
   {
@@ -225,15 +253,58 @@ const formFields: FormField[] = [
     },
   },
   {
-    label: 'Registrarse como',
-    name: 'role',
+    label: 'EPS',
+    name: 'eps',
     icon: <Diversity2OutlinedIcon/>,
     type: 'select',
-    placeholder: 'Seleccione su cargo',
+    placeholder: 'Seleccione su eps',
     validation: {
-      required: 'Seleccione el cargo o función que desempeña en la empresa',
+      required: 'Seleccione su EPS',
     },
-    options: userTypes
+    // options: userTypes
+  },
+
+  {
+    label: 'Caja de Compensacion',
+    name: 'compensationBox',
+    icon: <Diversity2OutlinedIcon/>,
+    type: 'select',
+    placeholder: 'Seleccione su caja de compensacion',
+    // validation: {
+    //   required: 'Seleccione el cargo o función que desempeña en la empresa',
+    // },
+    // options: userTypes
+  },
+  {
+    label: 'Fondo de Pensiones',
+    name: 'pension',
+    icon: <Diversity2OutlinedIcon/>,
+    type: 'select',
+    placeholder: 'Seleccione su fondo de pensiones',
+    // validation: {
+    //   required: 'Seleccione el cargo o función que desempeña en la empresa',
+    // },
+    // options: userTypes
+  },
+  {
+    label: 'Numero de beneficiarios',
+    name: 'beneficiaries',
+    icon: <Diversity2OutlinedIcon/>,
+    type: 'text',
+    placeholder: 'digite el numero de beneficiarios',
+    // validation: {
+    //   required: 'Seleccione el cargo o función que desempeña en la empresa',
+    // },
+    // options: userTypes
+  },
+  {
+    label: 'Seleccione si cotiza ARL',
+    name: 'arl',
+    icon: <Diversity2OutlinedIcon/>,
+    type: 'checkbox',
+    placeholder: '',
+    
+    // options: EPS
   },
   {
     label: 'Aceptar términos y condiciones',
@@ -267,13 +338,19 @@ const iconList = [
 
 type User={
   'company' : string,
-  'nit': string,
+  'lastName':string
+  'documentType':string
+  'document': string,
   'city': string,
   'department': string,
   'email': string,
   'password': string,
   'password_confirm': string,
-  'role': string,
+  'eps': string,
+  'arl': boolean,
+  'compensationBox': string,
+  'pension': string,
+  'beneficiaries': number,
   'tos': boolean,
 }
 export default function NewClientForm() {
@@ -313,13 +390,13 @@ export default function NewClientForm() {
 
       // #747a80, #00619E,  #C29A95, #E0C4A0, #3B2F3C  #0D202F
       <div id="new-client-form" className='h-full '>
-<div className="relative mt-16 w-100  h-screen bg-[#fafafa]   xl:flex-col transition-all duration-200 scrollbar-track-transparent overflow-y-scroll scrollbar-thin scrollbar-thumb-[#747a80] scrollbar-thumb-rounded-md">
+{/* <div className="relative mt-16 w-100  h-screen bg-[#fafafa]   xl:flex-col transition-all duration-200 scrollbar-track-transparent overflow-y-scroll scrollbar-thin scrollbar-thumb-[#747a80] scrollbar-thumb-rounded-md"> */}
 
-  <div className=" w-full absolute h-screen  bg-[#fafafa] opacity- flex items-center transition-all duration-200 transform -skew-y-12 mb-32 z-40 overflow-y-hidden "  >
-    <div className= ' bg-gradient-to-b rounded-t-md from-[#6A6257] to-[#E0C4A0] ml-6 w-[30%] h-full'>
+  {/* <div className=" w-full absolute h-screen  bg-[#fafafa] opacity- flex items-center transition-all duration-200 transform -skew-y-12 mb-32 z-40 overflow-y-hidden "  > */}
+    {/* <div className= ' bg-gradient-to-b rounded-t-md from-[#6A6257] to-[#E0C4A0] ml-6 w-[30%] h-full'>
     <h1 className= '  px-4 bg-[#E0C4A0] p-6 mt-20  my-auto text-xl text-center font-bold text-slate-100 '>¡Bienvenido abordo!</h1>
-    </div>
-    <div className= "grid grid-cols-4 my-0 text-[#fafafa]  py-16  items-center ml-6 border rounded  w-[70%] h-full bg-gradient-to-b from-[#123CD0] to-[#E0C4A0]">
+    </div> */}
+    {/* <div className= "grid grid-cols-4 my-0 text-[#fafafa]  py-16  items-center ml-6 border rounded  w-[70%] h-full bg-gradient-to-b from-[#123CD0] to-[#E0C4A0]">
       {iconList.map((item, index) => (
         <div key={index} className="flex justify-center items-center">
           < item.icon  sx={item.sx}/>
@@ -327,17 +404,17 @@ export default function NewClientForm() {
       ))}
 
 
-</div>
+</div> */}
 
-    <div className=' absolute flex z-10 h-full w-full px-12  transform skew-y-12 my-auto overflow-auto  scrollbar-track-transparent overflow-y-scroll scrollbar-thin scrollbar-thumb-[#747a80] scrollbar-thumb-rounded-md'>
+    <div className='  flex z-10 h-full w-full px-12 justify-center transform  my-auto bg-[#fafafa] pb-36'>
 
-      <div className='shadow-2xl mt-14 flex  hover:opacity-100 flex-col w-full xs:w-full overflow-y-auto space-y-4 my-auto py-16  items-center opacity-20 bg-[#FFFF] shadow-slate-900  transition-all duration-300 transform '>
+      <div className='shadow-2xl mt-14 flex  hover:opacity-100 flex-col w-full xs:w-full overflow-y-auto space-y-4 my-auto py-16  items-center opacity-20 bg-[#E2E2E2] shadow-slate-900  transition-all duration-300 transform '>
         
         <p className= 'text-[#fafafa] font-bold text-2xl text-center w-full py-6 tracking-wider bg-[#E0C4A0] '>Inicio de sesion <span> <LoginOutlinedIcon/></span></p>
   <form
             action=""
             onSubmit={handleSubmit(onSubmit)}
-            className="p-2 text-md text-center flex flex-col transition-all duration-300 transform  md:grid md:grid-cols-2 md:justify-evenly w-auto gap-8 text-[#0D202F] mx-auto"
+            className="p-2 text-md text-center flex flex-col transition-all duration-300 transform  md:grid md:grid-cols-2 lg:grid-cols-3 md:justify-evenly w-auto gap-8 text-[#0D202F] mx-auto"
           >
             {formFields.map((field) => (
               <label key={field.name} className={`text-md font-bold tracking-wide text-left bottom-0 flex flex-col w-full  text-slate-600 mx-auto ${errors[field.name] && 'text-red-500'}`}>
@@ -346,7 +423,7 @@ export default function NewClientForm() {
                   <select
                     className={`text-center py-4 justify-center focus:border-blue-500 w-full items-center text-slate-400 text-xs text-md focus:outline-none font-semibold border-b ${errors[field.name] && 'border-red-500'}`}
                     {...register(field.name, {
-                      required: field.validation.required,
+                      required: field.validation?.required,
                     })}
                   >
                     <option value="">{field.placeholder}</option>
@@ -359,12 +436,12 @@ export default function NewClientForm() {
                   </select>
                 ) : field.type === 'checkbox' ? (
                   <label className="text-md underline text-blue-500 cursor-pointer text-center flex flex-col w-auto  mx-auto">
-                    {field.label}
+                    {/* {field.label} */}
                     <input
                       type="checkbox"
                       className="text-center w-10 items-center bg-[#0D202F]  p-2 right-0 rounded-full  text-slate-400 text-xs text-md focus:outline-none font-semibold"
                       {...register(field.name, {
-                        required: field.validation.required,
+                        required: field.validation?.required,
                       })}
                     />
                   </label>
@@ -374,7 +451,7 @@ export default function NewClientForm() {
               placeholder="Tu empresa S.A.S."
               className={`focus:border-blue-500 h-12 bottom-0 font-normal  focus:outline-none text-center text-sm pt-2 w-full  text-slate-500 mx-auto border-b border-[#0D202F]`}
                     {...register(field.name, {
-                      required: field.validation.required,
+                      required: field.validation?.required,
                       // pattern: field.validation.pattern,
                     })}
                   />
@@ -384,17 +461,19 @@ export default function NewClientForm() {
                 )}
               </label>
             ))}
+<div className='md:col-span-3 items-center w-full '>
 
             <input
               type="submit"
-              className=" text-slate-500 hover:text-[#0D202F] hover:shadow-lg hover:opacity-75 mt-4 py-2 mb-6 md:ml-[25%] hover:rounded-full md:justify-center transform hover:scale-125 hover:border-[#123CD0] focus:outline-none transition-all duration-150 hover:ease-in-out col-span-2 md:w-1/2 text-xl hover:font-semibold  border-b-2 font-bold"
+              className="  text-slate-500 hover:text-[#0D202F] hover:shadow-lg hover:opacity-75 mt-4 py-2 mb-6 hover:rounded-full md:justify-center transform hover:scale-125 hover:border-[#123CD0] focus:outline-none transition-all duration-150 hover:ease-in-out px-12 text-xl hover:font-semibold  border-b-2 font-bold"
               placeholder="Submit"
-            />
+              />
+              </div>
           </form>
       </div>
     </div>
-    </div>
-</div>
+    {/* </div> */}
+{/* </div> */}
         </div>
   )
 }

@@ -13,7 +13,7 @@ const HeroLanding = () => {
      alt=""/>
      {/* </div> */}
     <div className='text-center space-y-4 items-center justify-center flex  flex-col md:w-[40%] w-full h-[50%] md:h-screen'>
-    <h4 className='text-black font-bold'>Seguridad Social para todos</h4>
+    <h4 className='text-black font-bold'>Seguridad Social para todess</h4>
     <div className='text-green-800  font-bold  text-3xl flex flex-col'><span className='text-green-600 font-bold text-xl'>¡AFILIATE HOY! Y disfruta de todos los beneficios que pagar EPS tiene para ti Desde</span>
     $99.999</div>
     <p>Pagar pension no es más una obligación</p>

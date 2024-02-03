@@ -34,6 +34,7 @@ const response = await axios.post(`http://localhost:8000/token`, formData);  // 
         // Store token in localStorage or sessionStorage
         localStorage.setItem('accessToken', data.access_token);
         // dispatch(signUpSuccess({ ...data, role: data.role}));
+        router.push('/')
         console.log(data)
         // router.push('/')
         // Redirect or perform other actions for logged-in users
@@ -81,6 +82,7 @@ const response = await axios.post(`http://localhost:8000/token`, formData);  // 
             </div>
           </div>
           <button
+          onClick={handleLogin}
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
           >
