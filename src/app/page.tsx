@@ -22,7 +22,7 @@ const Page = () => {
     <div id='landing' className='space-y-10   text-gray-900 bg-[#E2E2E2]  '>
       <HeroLanding/>
       <HostNewClients/>
-      <ProductPage/>
+      {/* <ProductPage/> */}
       <Tutorial/>
       <About/>
       <ContactForm/>
