@@ -6,6 +6,7 @@ import TuComponentePrincipal from '../_components/Test3';
 import { Provider } from 'react-redux';
 import { store } from '../../../redux/store'; // Importa tu store aquí
 import { useEffect } from 'react'
+import Dashboard from '../_components/Dashboard';
 
 const Page = () => {
 
@@ -19,6 +20,7 @@ const Page = () => {
       <Provider store={store}>
         {/* Rutas protegidas*/}
         <TuComponentePrincipal />
+        <Dashboard/>
       </Provider>
     </main>
   );
